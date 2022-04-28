@@ -11,6 +11,6 @@ class Article extends Model
 
     public function tag()
     {
-        return $this->hasOne(Tag::class);
+        return $this->hasOne(Tag::class, "id","tag_id");
     }
 }

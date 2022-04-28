@@ -14,6 +14,9 @@
     <a href="{{ route('crypto', $one_article->id) }}">
     {{ $one_article->name }}
     </a>
+    <a href="{{ route('tag', $one_article->tag_id) }}">
+    {{ $one_article->tag->name }}
+    </a>
     </p>
 @endforeach 
 

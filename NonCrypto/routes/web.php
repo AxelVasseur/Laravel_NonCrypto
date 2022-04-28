@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\TagController;
 use App\Models\Article;
-use App\Models\Comments;
+use App\Models\Tag;
 use App\Models\Users;
 
 /*
@@ -16,16 +18,14 @@ use App\Models\Users;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', function () {
+Route::get('/', function () {
     $article = Article::select("*")->paginate(5);
     return view('home', compact('article'));
     })->name('home');
 
-Route::get('/crypto',  [ArticleController::class, 'index'])->name('crypto');
+Route::get('/crypto/{id}',  [ArticleController::class, 'show_article'])->name('crypto');
 
 
+Route::get('/tag/{id}', [TagController::class, 'show_tag'])->name('tag');
 

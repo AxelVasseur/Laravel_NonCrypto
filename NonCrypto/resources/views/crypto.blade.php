@@ -1,13 +1,27 @@
 <div>
- ($article as $articles)
+
     <p>
         
         
-    <a href="{{ route('article', $article->id_article) }}">
+    <a href="{{ route('crypto', $article->id) }}">
     {{ $article->name }}
     </a>
+  
+    <a href="{{ route('tag', $article->tag_id) }}">
+    {{ $article->tag->name }}
+    </a>
+
+
     </p>
+    <p>Created at: {{ $article->created_at}}</p>
+
     
 
 </div>
-{{ $articles->links() }}
+
+<div>
+    <p>Description:</p>
+    <p>{{$article->description}}</p>
+
+</div>
+
