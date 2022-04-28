@@ -20,6 +20,7 @@ use App\Models\Users;
 
 
 Route::get('/', function () {
+
     $article = Article::select("*")->paginate(5);
     return view('home', compact('article'));
     })->name('home');
@@ -28,4 +29,8 @@ Route::get('/crypto/{id}',  [ArticleController::class, 'show_article'])->name('c
 
 
 Route::get('/tag/{id}', [TagController::class, 'show_tag'])->name('tag');
+
+
+
+require __DIR__.'/auth.php';
 
