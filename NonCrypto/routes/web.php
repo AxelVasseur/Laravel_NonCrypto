@@ -1,11 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\TagController;
-use App\Models\Article;
-use App\Models\Tag;
-use App\Models\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +13,12 @@ use App\Models\Users;
 |
 */
 
-
 Route::get('/', function () {
-    $article = Article::select("*")->paginate(5);
-    return view('home', compact('article'));
-    })->name('home');
+    return view('welcome');
+});
 
-Route::get('/crypto/{id}',  [ArticleController::class, 'show_article'])->name('crypto');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-Route::get('/tag/{id}', [TagController::class, 'show_tag'])->name('tag');
-
+require __DIR__.'/auth.php';
