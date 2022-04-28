@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Article;
+use App\Models\Comments;
+use App\Models\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function () {
+    $article = Article::select("*")->paginate(5);
+    return view('home', compact('article'));
+    })->name('home');
+
+Route::get('/crypto',  [ArticleController::class, 'index'])->name('crypto');
+
+
+
