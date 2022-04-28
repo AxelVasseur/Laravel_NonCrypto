@@ -26,6 +26,5 @@ class ArticleSeeder extends Seeder
                 ['name' => 'Fresh'],
             ))
             ->create();
-            // ->hasTag(10)
     }
 }

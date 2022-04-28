@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use App\Models\Tag;
 
 /**
@@ -20,7 +21,7 @@ class ArticleFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->text(),
-            'tag_id' => 1,
+            'tag_id' => Arr::random([1, 2, 3]),
         ];
     }
 }
