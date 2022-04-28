@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Tag;
 
 class TagSeeder extends Seeder
@@ -15,8 +16,14 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Tag::factory()
-            ->count(10)
-            ->create();
+        DB::table('tags')->insert([
+            'name' => 'free',
+        ]);
+        DB::table('tags')->insert([
+            'name' => 'green',
+        ]);
+        DB::table('tags')->insert([
+            'name' => 'weird',
+        ]);
     }
 }
