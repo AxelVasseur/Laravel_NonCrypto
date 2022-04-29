@@ -22,7 +22,14 @@
 <div>
     <p>Description:</p>
     <p>{{$article->description}}</p>
-
+    @if(count(Auth::user()->cart_article->where('article_id', $article->id)) == 0)
+        <form action="{{ route('add-to-cart', $article->id) }}" method="POST">
+            @csrf
+            <button>Add to !Cart</button>
+        </form>
+    @else
+        <button onclick="alert('Sorry, it\'s a !Button.');">Already have one in cart</button>
+    @endif
 </div>
 
 <div>

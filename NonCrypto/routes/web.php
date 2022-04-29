@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CartController;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Users;
@@ -36,5 +37,9 @@ Route::post('/modify-comment/{id}', [CommentController::class, 'modify'])->name(
 Route::patch('/update-comment/{comment_id}/{article_id}', [CommentController::class, 'update'])->name('update-comment');
 
 Route::delete('/delete-comment/{comment_id}/{article_id}', [CommentController::class, 'delete'])->name('delete-comment');
+
+Route::get('/cart', [CartController::class, 'show_cart'])->name('cart');
+
+Route::post('/add-to-cart/{id}', [CartController::class, 'create'])->name('add-to-cart');
 
 require __DIR__.'/auth.php';

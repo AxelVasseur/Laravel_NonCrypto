@@ -12,6 +12,8 @@
                 {{ __('Log Out') }}
             </x-dropdown-link>
         </form>
+
+        <a href="{{ route('cart') }}">Cart</a>
     
 
     <div class="py-12">
