@@ -21,7 +21,14 @@
 <div>
     <p>Description:</p>
     <p>{{$article->description}}</p>
-
+    @if(count(Auth::user()->cart_article->where('article_id', $article->id)) == 0)
+        <form action="{{ route('add-to-cart', $article->id) }}" method="POST">
+            @csrf
+            <button>Add to !Cart</button>
+        </form>
+    @else
+        <button onclick="alert('Sorry, it\'s a !Button.');">Already have one in cart</button>
+    @endif
 </div>
 
 <div>
@@ -31,11 +38,33 @@
             @foreach($article->comment as $comment)
                 <li>
                     <article>
-                        @if($user->id == $comment->user->id)
-                            <p>{{ $comment->body }} <small>by {{ $comment->user->name }}</small> <time>{{ $comment->created_at->diffForHumans() }}</time></p>
-                            <a href="#">Edit</a>
+                        @if(Auth::id() == $comment->user->id)
+                            <p>
+                                {{ $comment->body }} 
+                                <small>by {{ $comment->user->name }}</small> 
+                                <time>{{ $comment->created_at->diffForHumans() }}</time> 
+                                @if($comment->updated_at != $comment->created_at)
+                                    <i>Edited</i>
+                                @endif
+                            </p>
+                            <form action="{{ route('modify-comment', $comment->id) }}" method="POST">
+                                @csrf
+                                <button>Edit</button>
+                            </form>
+                            <form action="{{ route('delete-comment', [$comment->id, $comment->article_id]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button>Delete</button>
+                            </form>
                         @else
-                            <p>{{ $comment->body }} <small>by {{ $comment->user->name }}</small> <time>{{ $comment->created_at->diffForHumans() }}</time></p>
+                            <p>
+                                {{ $comment->body }} 
+                                <small>by {{ $comment->user->name }}</small> 
+                                <time>{{ $comment->created_at->diffForHumans() }}</time> 
+                                @if($comment->updated_at != $comment->created_at)
+                                    <i>Edited</i>
+                                @endif
+                            </p>
                         @endif
                     </article>
                 </li>

@@ -10,9 +10,8 @@ class ArticleController extends Controller
 {
     public function show_article($id)
     {
-        $user = Auth::user();
         $article = Article::where("id", $id)->first();
-        return view('crypto', compact('article', 'user'));
+        return view('crypto', compact('article'));
     }
 
 }
