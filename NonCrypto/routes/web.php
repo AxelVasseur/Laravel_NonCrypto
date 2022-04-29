@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,6 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -48,3 +48,5 @@ Route::get('/tag/{id}', [TagController::class, 'show_tag'])->name('tag');
 Route::post('/post-comment/{id}', [CommentController::class, 'create'])->name('post-comment');
 
 require __DIR__.'/auth.php';
+
+
