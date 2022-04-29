@@ -1,8 +1,7 @@
 <div>
 
     <p>
-        
-        
+           
     <a href="{{ route('crypto', $article->id) }}">
     {{ $article->name }}
     </a>
