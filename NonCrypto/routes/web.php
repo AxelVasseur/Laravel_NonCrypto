@@ -5,9 +5,10 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use App\Models\Article;
 use App\Models\Tag;
-use App\Models\Users;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ use App\Models\Users;
 |
 */
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
 Route::get('/', function () {
     $article = Article::select("*")->paginate(5);
     return view('home', compact('article'));
@@ -27,10 +33,21 @@ Route::get('/', function () {
 
 Route::get('/crypto/{id}',  [ArticleController::class, 'show_article'])->name('crypto');
 
+Route::get('/utilisateur', function () {
+    $users = User::paginate(5);
+    return view('utilisateur', compact('users'));
+    })->name('utilisateur');
+
+Route::get('/utilisateur/{user}', [UserController::class, 'show'])
+->middleware(['auth'])
+->name('show');
+
+
 
 Route::get('/tag/{id}', [TagController::class, 'show_tag'])->name('tag');
 
 Route::post('/post-comment/{id}', [CommentController::class, 'create'])->name('post-comment');
+
 
 Route::post('/modify-comment/{id}', [CommentController::class, 'modify'])->name('modify-comment');
 
@@ -46,3 +63,4 @@ Route::delete('/remove-cart-article/{id}', [CartController::class, 'delete'])->n
 
 
 require __DIR__.'/auth.php';
+
