@@ -17,13 +17,13 @@ class TagSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->insert([
-            'name' => 'free',
+            'name' => 'Racist',
         ]);
         DB::table('tags')->insert([
-            'name' => 'green',
+            'name' => 'Homophobe',
         ]);
         DB::table('tags')->insert([
-            'name' => 'weird',
+            'name' => 'Apple',
         ]);
     }
 }

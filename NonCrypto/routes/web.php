@@ -58,7 +58,7 @@ Route::get('/utilisateur/{user}', [UserController::class, 'show'])
 ->name('show');
         
 
-Route::post ('/grantUser', function (){
+Route::get ('/grantUser', function (){
     $user = \App\Models\Grant::create(['user_id'=>Auth::id(), 'role_id'=>1]);
     $article = Article::select("*")->paginate(5);
     return view('home', compact('article'));

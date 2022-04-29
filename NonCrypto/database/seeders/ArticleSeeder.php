@@ -21,9 +21,12 @@ class ArticleSeeder extends Seeder
         Article::factory()
             ->count(10)
             ->state(new Sequence(
-                ['name' => 'Doge'],
-                ['name' => 'Bit'],
-                ['name' => 'Fresh'],
+                ['name' => '!Dodge'],
+                ['name' => '!Bitcoin'],
+                ['name' => '!Etherum'],
+                ['name' => '!Xls'],
+                ['name' => '!Solana'],
+                ['name' => '!Aave'],
             ))
             ->create();
     }
