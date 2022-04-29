@@ -42,4 +42,7 @@ Route::get('/cart', [CartController::class, 'show_cart'])->name('cart');
 
 Route::post('/add-to-cart/{id}', [CartController::class, 'create'])->name('add-to-cart');
 
+Route::delete('/remove-cart-article/{id}', [CartController::class, 'delete'])->name('remove-cart-article');
+
+
 require __DIR__.'/auth.php';

@@ -24,4 +24,11 @@ class CartController extends Controller
 
         return view('cart', compact('cart_article'));
     }
+
+    public function delete(Request $request, $id)
+    {
+        Cart::where('id', $id)->delete();
+
+        return redirect()->route('cart');
+    }
 }
